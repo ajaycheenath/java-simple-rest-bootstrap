@@ -13,10 +13,17 @@ public class AppController {
     private final int PORT_NUMBER_BASE = 9000;
     @Autowired
     private AppRepository appRepository;
+
     @GetMapping
     public App getApp(@RequestParam(value = "appId") Long appId) {
         return appRepository.findById(appId).orElse(null);
     }
+
+    @GetMapping(value ="/nextid")
+    public Integer getNextAppId(@RequestParam(value = "appId") Long appId) {
+        return appRepository.findMaxAppId() != null ? appRepository.findMaxAppId().intValue() + 1 : 1;
+    }
+
     @GetMapping(value = "/list")
     public Iterable<App> getAllApps() {
         return appRepository.findAll();
