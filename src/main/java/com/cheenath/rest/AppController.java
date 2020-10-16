@@ -10,7 +10,7 @@ import java.util.Date;
 @RequestMapping("/app")
 public class AppController {
     private final String APP_NAME="app-";
-    private final int PORT_NUMBER_BASE = 9000;
+    private final int PORT_NUMBER_BASE = 8080;
     private final String JAVA_REPO_URL = "https://github.com/ajaycheenath/java-simple-rest-bootstrap.git";
     @Autowired
     private AppRepository appRepository;
