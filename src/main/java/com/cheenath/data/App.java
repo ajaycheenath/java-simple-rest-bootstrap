@@ -16,11 +16,12 @@ public class App {
     protected App() {
     }
 
-    public App(final Integer id, final String appName, final int port, final Date createDate) {
+    public App(final Integer id, final String appName, final int port, final Date createDate, final String repo) {
         this.id = id;
         this.appName = appName;
         this.port = port;
         this.createDate = createDate;
+        this.repo = repo;
     }
 
     public Integer getId() {

@@ -11,6 +11,7 @@ import java.util.Date;
 public class AppController {
     private final String APP_NAME="app-";
     private final int PORT_NUMBER_BASE = 9000;
+    private final String JAVA_REPO_URL = "https://github.com/ajaycheenath/java-simple-rest-bootstrap.git";
     @Autowired
     private AppRepository appRepository;
 
@@ -30,9 +31,9 @@ public class AppController {
     }
 
     @PostMapping
-    public App addApp() {
+    public App addApp(@RequestParam(value = "repo") String repo) {
         int nextAppId = appRepository.findMaxAppId() != null ? appRepository.findMaxAppId().intValue() + 1 : 1;
-        return appRepository.save(new App(nextAppId, APP_NAME + nextAppId, PORT_NUMBER_BASE + nextAppId, new Date()));
+        return appRepository.save(new App(nextAppId, APP_NAME + nextAppId, PORT_NUMBER_BASE + nextAppId, new Date(), repo));
     }
 
     @DeleteMapping
