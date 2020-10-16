@@ -20,7 +20,7 @@ public class AppController {
     }
 
     @GetMapping(value ="/nextid")
-    public Integer getNextAppId(@RequestParam(value = "appId") Long appId) {
+    public Integer getNextAppId() {
         return appRepository.findMaxAppId() != null ? appRepository.findMaxAppId().intValue() + 1 : 1;
     }
 
