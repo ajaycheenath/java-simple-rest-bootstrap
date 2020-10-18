@@ -12,16 +12,18 @@ public class App {
     private int port;
     private Date createDate;
     private String repo;
+    private String openApiURL;
 
     protected App() {
     }
 
-    public App(final Integer id, final String appName, final int port, final Date createDate, final String repo) {
+    public App(final Integer id, final String appName, final int port, final Date createDate, final String repo, final String openApiURL) {
         this.id = id;
         this.appName = appName;
         this.port = port;
         this.createDate = createDate;
         this.repo = repo;
+        this.openApiURL = openApiURL;
     }
 
     public Integer getId() {
@@ -63,5 +65,14 @@ public class App {
     public void setRepo(String repo) {
         this.repo = repo;
     }
+
+    public String getOpenApiURL() {
+        return openApiURL;
+    }
+
+    public void setOpenApiURL(String openApiURL) {
+        this.openApiURL = openApiURL;
+    }
+
 
 }

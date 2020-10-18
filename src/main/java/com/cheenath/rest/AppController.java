@@ -12,6 +12,7 @@ public class AppController {
     private final String APP_NAME="app-";
     private final int PORT_NUMBER_BASE = 8080;
     private final String JAVA_REPO_URL = "https://github.com/ajaycheenath/java-simple-rest-bootstrap.git";
+
     @Autowired
     private AppRepository appRepository;
 
@@ -33,7 +34,9 @@ public class AppController {
     @PostMapping
     public App addApp(@RequestParam(value = "repo") String repo) {
         int nextAppId = appRepository.findMaxAppId() != null ? appRepository.findMaxAppId().intValue() + 1 : 1;
-        return appRepository.save(new App(nextAppId, APP_NAME + nextAppId, PORT_NUMBER_BASE + nextAppId, new Date(), repo));
+        final int PORT_NUMBER = PORT_NUMBER_BASE + nextAppId;
+        final String openApiURL = String.format("http://localhost:%d/swagger-ui-custom.html", PORT_NUMBER);
+        return appRepository.save(new App(nextAppId, APP_NAME + nextAppId, PORT_NUMBER, new Date(), repo, openApiURL));
     }
 
     @DeleteMapping
