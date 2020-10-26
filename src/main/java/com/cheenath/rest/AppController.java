@@ -32,11 +32,11 @@ public class AppController {
     }
 
     @PostMapping
-    public App addApp(@RequestParam(value = "repo") String repo) {
+    public App addApp(@RequestParam(value = "appName") String appName, @RequestParam(value = "repo") String repo) {
         int nextAppId = appRepository.findMaxAppId() != null ? appRepository.findMaxAppId().intValue() + 1 : 1;
         final int PORT_NUMBER = PORT_NUMBER_BASE + nextAppId;
         final String openApiURL = String.format("http://localhost:%d/swagger-ui-custom.html", PORT_NUMBER);
-        return appRepository.save(new App(nextAppId, APP_NAME + nextAppId, PORT_NUMBER, new Date(), repo, openApiURL));
+        return appRepository.save(new App(nextAppId, appName, PORT_NUMBER, new Date(), repo, openApiURL));
     }
 
     @DeleteMapping
